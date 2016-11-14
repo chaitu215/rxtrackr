@@ -1,18 +1,18 @@
-# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
-
-# This model initially had no columns defined. If you add columns to the
-# model remove the '{}' from the fixture names and add the columns immediately
-# below each fixture, per the syntax in the comments below
+# # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 #
-one:
-  first_name:
-  last_name:
-  email:
-
-# column: value
+# # This model initially had no columns defined. If you add columns to the
+# # model remove the '{}' from the fixture names and add the columns immediately
+# # below each fixture, per the syntax in the comments below
+# #
+# one:
+#   first_name: "Example"
+#   last_name:
+#   email:
 #
-two:
-  first_name2:
-  last_name2:
-  email2:
-# column: value
+# # column: value
+# #
+# two:
+#   first_name2:
+#   last_name2:
+#   email2:
+# # column: value
