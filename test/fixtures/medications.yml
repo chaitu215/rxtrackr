@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  generic_name: MyString
+  brand_name: MyString
+  administration_route: MyString
+  dose: MyString
+  doctor: MyString
+
+two:
+  generic_name: MyString
+  brand_name: MyString
+  administration_route: MyString
+  dose: MyString
+  doctor: MyString

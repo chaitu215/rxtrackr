@@ -6,7 +6,7 @@ Specs:
 - [x] Include at least one belongs_to relationship (x belongs_to y e.g. Post belongs_to User) _Medication belongs to user._
 - [x] Include at least one has_many through relationship (x has_many y through z e.g. Recipe has_many Items through Ingredients) _User has many doses and has many doctors through medications._
 - [x] The "through" part of the has_many through includes at least one user submittable attribute (attribute_name e.g. ingredients.quantity) _User has many doses through medications (medication.dose, medication.doctor)._
-- [x] Include reasonable validations for simple model objects (list of model objects with validations e.g. User, Recipe, Ingredient, Item) _Validates `presence: true` for medication name and dose._
+- [x] Include reasonable validations for simple model objects (list of model objects with validations e.g. User, Recipe, Ingredient, Item) _Validates presence of medication brand or generic name through custom validation on Medication model._
 - [x] Include a class level ActiveRecord scope method (model object & class method name and URL to see the working feature e.g. User.most_recipes URL: /users/most_recipes) _User.otc_meds ... /users/otc_meds and user.prescrip_meds ... /users/prescrip_meds_
 - [x] Include a nested form writing to an associated model using a custom attribute writer (form URL, model name e.g. /recipe/new, Item) _prescription/new, dose_ and _prescription/new, doctor_
 - [x] Include signup (how e.g. Devise) _Devise_

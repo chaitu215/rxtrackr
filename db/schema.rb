@@ -10,7 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161113231826) do
+ActiveRecord::Schema.define(version: 20161114224803) do
+
+  create_table "medications", force: :cascade do |t|
+    t.string   "generic_name"
+    t.string   "brand_name"
+    t.string   "administration_route"
+    t.string   "dose"
+    t.string   "dosage_form"
+    t.string   "doctor"
+    t.integer  "user_id"
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
@@ -23,6 +35,9 @@ ActiveRecord::Schema.define(version: 20161113231826) do
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
+    t.string   "confirmation_token"
+    t.datetime "confirmed_at"
+    t.datetime "confirmation_sent_at"
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
     t.integer  "role",                   default: 1
@@ -31,6 +46,7 @@ ActiveRecord::Schema.define(version: 20161113231826) do
     t.date     "birthdate"
     t.string   "provider"
     t.string   "uid"
+    t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

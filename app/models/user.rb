@@ -5,6 +5,10 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable, :confirmable,
          :omniauthable
 
+  has_many :medications, dependent: :destroy
+  has_many :doctors,     through: :medications
+  has_many :doses,       through: :medications
+
   before_save   :downcase_email
 
   validates :first_name, presence: true
