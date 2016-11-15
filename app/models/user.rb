@@ -3,7 +3,7 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :confirmable,
-         :omniauthable
+         :omniauthable, :omniauth_providers => [:facebook]
 
   has_many :medications, dependent: :destroy
   has_many :doctors,     through: :medications
@@ -18,6 +18,13 @@ class User < ApplicationRecord
   enum role: [:normal, :admin]
 
   after_initialize :set_default_role
+
+  def self.from_omniauth(auth)
+    where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
+      user.email = auth.info.email
+      user.password = Devise.friendly_token[0,20]
+    end
+  end
 
   private
 
