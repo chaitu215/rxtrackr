@@ -9,15 +9,21 @@ class User < ApplicationRecord
   has_many :doctors,     through: :medications
   has_many :doses,       through: :medications
 
-  before_save   :downcase_email
-
-  validates :first_name, presence: true, length: { maximum: 40 }
-  validates :email,      presence: true, uniqueness: true
-  validates :password,   presence: true, length: { minimum: 6 }, allow_nil: true
+  # validates :first_name, presence: true, length: { maximum: 40 }
+  # validates :email,      presence: true, uniqueness: true
+  # validates :password,   presence: true, length: { minimum: 6 }, allow_nil: true
 
   enum role: [:normal, :admin]
 
   after_initialize :set_default_role
+
+  def self.new_with_session(params, session)
+    super.tap do |user|
+      if data = session["devise.facebook_data"] && session["devise.facebook_data"]["extra"]["raw_info"]
+        user.email = data["email"] if user.email.blank?
+      end
+    end
+  end
 
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
@@ -30,9 +36,5 @@ class User < ApplicationRecord
 
     def set_default_role
       self.role ||= :user
-    end
-
-    def downcase_email
-      email.downcase!
     end
 end
