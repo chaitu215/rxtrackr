@@ -21,8 +21,8 @@
   </thead>
     <tr>
       <% @user.medications.each do |m| %>
-      <td><%= m.brand_name %></td>
-      <td><%= m.generic_name %></td>
+      <td><%= link_to m.brand_name, medication_path(m) unless m.brand_name.nil? %></td>
+      <td><%= link_to m.generic_name, medication_path(m) unless m.generic_name.nil? %></td>
       <td><%= m.dose %></td>
       <td><%= m.administration_route %></td>
       <td><%= m.frequency %></td>
@@ -30,3 +30,4 @@
     </tr>
     <% end %>
   </table>
+  <%= link_to "Add a new medication", new_user_medication_path(@user) %>

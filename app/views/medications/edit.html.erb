@@ -1,4 +1,4 @@
 <h1>Edit Medication</h1>
 <%= render 'form' %>
-<%= button_to "Delete this medication", user_medication_path(@medication),
+<%= link_to "Delete", user_medication_path(@medication),
   method: :delete, class: "btn btn-default" %>
