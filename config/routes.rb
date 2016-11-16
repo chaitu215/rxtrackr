@@ -4,6 +4,8 @@ Rails.application.routes.draw do
   root 'static_pages#home'
   get  '/about',   to: 'static_pages#about'
   get  '/contact', to: 'static_pages#contact'
+  get  '/privacy', to: 'static_pages#privacy'
+  get  '/terms',   to: 'static_pages#terms'
   resources :users, only: [:index, :show]
   resources :medications
 end
