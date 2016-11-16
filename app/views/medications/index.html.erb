@@ -1,0 +1,30 @@
+<h1>Current Medications</h1>
+
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th colspan=4>
+          <h3>Name: <%= @user.first_name %> <%= @user.last_name %></h3>
+      </th>
+      <th>
+        <h3>Birthdate: <%= @user.birthdate %></h3>
+      </th>
+    </tr>
+    <tr>
+      <th>Medication Name<br>Brand | <em>Generic</em></th>
+      <th>Dose</th>
+      <th>Route</th>
+      <th>Frequency</th>
+      <th>Prescribing Doctor or OTC</th>
+    </tr>
+  </thead>
+    <tr>
+      <% @user.medications.each do |m| %>
+      <td><%= m.brand_name %> | <em><%= m.generic_name %></em></td>
+      <td><%= m.dose %></td>
+      <td><%= m.administration_route %></td>
+      <td><%= m.frequency %></td>
+      <td><%= m.doctor %></td>
+    </tr>
+    <% end %>
+  </table>
