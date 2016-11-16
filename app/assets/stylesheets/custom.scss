@@ -59,6 +59,10 @@ p {
   line-height: 1.7em;
 }
 
+a {
+  font-size: 16px;
+}
+
 /* header */
 
 #logo {
@@ -82,7 +86,9 @@ footer {
   padding-top: 5px;
   border-top: 1px solid $gray-medium-light;
   color: $gray-light;
+  font-size: 14px;
   a {
+    font-size: 14px;
     color: $gray;
     &:hover {
       color: $gray-darker;
