@@ -6,7 +6,7 @@ class MedicationsController < ApplicationController
 
   def index
     @medications = @user.medications.all
-    @medication = Medication.find_by(params[:user_id])
+    @medication = Medication.find_by(params[:id])
   end
 
   def new
