@@ -6,7 +6,7 @@
     <p>Email: <%= @user.email %></p>
     <p>Birthdate: <%= @user.birthdate %></p>
     <p><%= link_to "Medications", user_medications_path(@user) %></p>
-    <p><%= button_to "Edit Profile", edit_user_registration_path(@user) %>
-    <p><%= button_to "Cancel My Account", registration_path(@user), data: { confirm: "Are you sure?" }, method: :delete %></p>
+    <p><%= link_to "Edit Profile", edit_user_registration_path(@user), class: "btn btn-default" %>
+    <p><%= button_to "Cancel My Account", registration_path(@user), data: { confirm: "Are you sure?" }, method: :delete, class: "btn btn-default" %></p>
   </div>
 </div>
