@@ -1,2 +1,12 @@
-<%= current_user.first_name %> <%= current_user.last_name %>, 
-<%= current_user.birthdate %>
+<h1>Profile</h1>
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <p>First Name: <%= @user.first_name %></p>
+    <p>Last Name: <%= @user.last_name %></p>
+    <p>Email: <%= @user.email %></p>
+    <p>Birthdate: <%= @user.birthdate %></p>
+    <p><%= link_to "Medications", user_medications_path(@user) %></p>
+    <p><%= button_to "Edit Profile", edit_user_registration_path(@user) %>
+    <p><%= button_to "Cancel My Account", registration_path(@user), data: { confirm: "Are you sure?" }, method: :delete %></p>
+  </div>
+</div>
