@@ -4,8 +4,6 @@ class Medication < ApplicationRecord
   validates :user_id, presence: true
   validate  :brand_or_generic
 
-  default_scope -> { order(created_at: :desc) }
-
   private
 
     def brand_or_generic
