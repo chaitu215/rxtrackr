@@ -1,0 +1,40 @@
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <%= form_for(@medication) do |f| %>
+
+      <div class="field">
+        <%= f.label :brand_name, "Brand Name" %> <br />
+        <%= f.text_field :brand_name, autofocus: true, class: 'form-control' %>
+      </div>
+
+      <div class="field">
+        <%= f.label :generic_name, "Generic Name" %> <br />
+        <%= f.text_field :generic_name, class: 'form-control' %>
+      </div>
+
+      <div class="field">
+        <%= f.label :dose, "Dose" %> <br />
+        <%= f.text_field :dose, class: 'form-control' %>
+      </div>
+
+      <div class="field">
+        <%= f.label :administration_route, "Route" %><br />
+        <%= f.text_field :administration_route, class: 'form-control' %>
+      </div>
+
+      <div class="field">
+        <%= f.label :frequency, "Frequency" %><br />
+        <%= f.text_field :frequency, class: 'form-control' %>
+      </div>
+
+      <div class="field">
+        <%= f.label :doctor, "Prescribing Doctor or OTC" %><br />
+        <%= f.text_field :doctor, class: 'form-control' %>
+      </div>
+
+      <div class="actions">
+        <%= f.submit "Save", class: "btn btn-default" %>
+      </div>
+    <% end %>
+  </div>
+</div>

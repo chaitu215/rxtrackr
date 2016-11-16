@@ -11,7 +11,8 @@
       </th>
     </tr>
     <tr>
-      <th>Medication Name<br>Brand | <em>Generic</em></th>
+      <th>Brand Name</th>
+      <th>Generic Name</th>
       <th>Dose</th>
       <th>Route</th>
       <th>Frequency</th>
@@ -20,7 +21,8 @@
   </thead>
     <tr>
       <% @user.medications.each do |m| %>
-      <td><%= m.brand_name %> | <em><%= m.generic_name %></em></td>
+      <td><%= m.brand_name %></td>
+      <td><%= m.generic_name %></td>
       <td><%= m.dose %></td>
       <td><%= m.administration_route %></td>
       <td><%= m.frequency %></td>
