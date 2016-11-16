@@ -1,12 +1,12 @@
 class MedicationsController < ApplicationController
   before_action :set_user,
-                only: [:index, :create, :edit, :update, :destroy]
+                only: [:index, :create, :destroy]
   before_action :set_medication,
-                only: [:edit, :update, :destroy]
+                only: [:show, :edit, :update, :destroy]
 
   def index
     @medications = @user.medications.all
-    @medication = Medication.find_by(params[:id])
+    @medication = Medication.find_by(params[:user_id])
   end
 
   def new
@@ -37,7 +37,6 @@ class MedicationsController < ApplicationController
   end
 
   def show
-    @medication = Medication.find_by(params[:id])
   end
 
   def destroy
@@ -53,7 +52,7 @@ class MedicationsController < ApplicationController
     end
 
     def set_medication
-      @medication = @user.medications.find_by(params[:id])
+      @medication = Medication.find(params[:id])
     end
 
     def medication_params
