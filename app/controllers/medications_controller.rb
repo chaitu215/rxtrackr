@@ -38,7 +38,6 @@ class MedicationsController < ApplicationController
 
   def show
     @medication = Medication.find_by(params[:id])
-    @medication
   end
 
   def destroy
