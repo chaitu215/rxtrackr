@@ -9,9 +9,9 @@ class User < ApplicationRecord
   has_many :doctors,     through: :medications
   has_many :doses,       through: :medications
 
-  # validates :first_name, presence: true, length: { maximum: 40 }
-  # validates :email,      presence: true, uniqueness: true
-  # validates :password,   presence: true, length: { minimum: 6 }, allow_nil: true
+  validates :first_name, presence: true, length: { maximum: 40 }
+  validates :email,      presence: true, uniqueness: true
+  validates :password,   presence: true, length: { minimum: 6 }, allow_nil: true
 
   enum role: [:normal, :admin]
 

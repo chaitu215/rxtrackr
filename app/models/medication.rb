@@ -1,7 +1,8 @@
 class Medication < ApplicationRecord
   belongs_to :user
 
-  validate :brand_or_generic
+  validates :user_id, presence: true
+  validate  :brand_or_generic
 
   private
 
