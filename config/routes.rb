@@ -12,4 +12,5 @@ Rails.application.routes.draw do
   resources :medications do
     resources :notes
   end
+  resources :notes
 end
