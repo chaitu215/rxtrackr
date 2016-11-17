@@ -31,5 +31,5 @@
       method: :delete, class: "btn btn-default" %>
   <%= link_to "New", new_user_medication_path(@medication.user), class: "btn btn-default" %>
   <%= link_to "Chart", user_medications_path(@medication.user), class: "btn btn-default" %>
-  <%= link_to "Add notes", medication_path(@medication), class: "btn btn-default" %>
+  <%= link_to "Add notes", new_medication_note_path(@medication), class: "btn btn-default" %>
 </nav>

@@ -1,6 +1,7 @@
 class Medication < ApplicationRecord
   belongs_to :user
-
+  has_many   :notes
+  
   validates :user_id, presence: true
   validate  :brand_or_generic
 
