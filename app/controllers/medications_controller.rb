@@ -1,8 +1,10 @@
 class MedicationsController < ApplicationController
+  before_action :authenticate_user!,
+                only: [:index, :show, :destroy, :edit, :create, :update]
   before_action :set_user,
-                only: [:index, :create, :destroy]
+                only: [:index, :create]
   before_action :set_medication,
-                only: [:show, :edit, :update, :destroy]
+                only: [:show, :edit, :update]
 
   def index
     @medications = @user.medications.all
@@ -40,8 +42,10 @@ class MedicationsController < ApplicationController
   end
 
   def destroy
-    @medication.destroy
-    redirect_to user_medications_path(@user),
+    medication = Medication.find(params[:id])
+    user = medication.user
+    medication.destroy
+    redirect_to user_medications_path(user),
       notice: "Medication was successfully deleted."
   end
 
