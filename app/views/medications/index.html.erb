@@ -3,11 +3,21 @@
 <table class="table table-hover">
   <thead>
     <tr>
-      <th colspan=4>
-          <h3>Name: <%= @user.first_name %> <%= @user.last_name %></h3>
+      <th>
+          <h3>Name:</h3>
+      </th>
+      <th colspan=3>
+        <% if @user.first_name.length > 20 || @user.last_name.length > 20 %>
+        <h4><%= @user.first_name %><br><%= @user.last_name %></h4>
+        <% else %>
+        <h4><%= @user.first_name %> <%= @user.last_name %></h4>
+        <% end %>
       </th>
       <th>
-        <h3>Birthdate: <%= @user.birthdate %></h3>
+        <h3>Birthdate: </h3>
+      </th>
+      <th>
+        <h4><%= @user.birthdate.strftime("%m-%e-%Y") %></h4>
       </th>
     </tr>
     <tr>

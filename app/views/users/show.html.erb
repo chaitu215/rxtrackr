@@ -4,7 +4,7 @@
     <p>First Name: <%= @user.first_name %></p>
     <p>Last Name: <%= @user.last_name %></p>
     <p>Email: <%= @user.email %></p>
-    <p>Birthdate: <%= @user.birthdate %></p>
+    <p>Birthdate: <%= @user.birthdate.strftime("%m-%e-%Y") %></p>
     <p><%= link_to "Medications", user_medications_path(@user) %></p>
     <p><%= link_to "Edit Profile", edit_user_registration_path(@user),
        class: "btn btn-default" %></p>
