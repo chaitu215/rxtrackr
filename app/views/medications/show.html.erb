@@ -25,6 +25,6 @@
   <td><%= @medication.doctor %></td>
 </tr>
 </table>
-<%= link_to "Edit", edit_medication_path(@medication) %>
+<%= link_to "Edit", edit_medication_path(@medication), class: "btn btn-default" %>
 <%= link_to "Delete", medication_path(@medication),
     method: :delete, class: "btn btn-default" %>
