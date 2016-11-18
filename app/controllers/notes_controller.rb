@@ -1,8 +1,9 @@
 class NotesController < ApplicationController
   before_action :authenticate_user!,
                 only: [:index, :show, :edit, :create, :update]
-  before_action :set_medication, only: [:create]
+  before_action :set_medication, only: [:create, :show]
   before_action :set_note,       only: [:show, :edit, :update, :destroy]
+  before_action :set_user,       only: [:show]
 
   def index
     @notes = Note.all
@@ -52,6 +53,10 @@ class NotesController < ApplicationController
 
     def set_note
       @note = Note.find(params[:id])
+    end
+
+    def set_user
+      @user = User.find_by(params[:id])
     end
 
     def note_params

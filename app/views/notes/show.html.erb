@@ -1,2 +1,8 @@
 <h3>Note</h3>
 <p><%= @note.content %></p>
+<nav>
+  <%= link_to "Edit", edit_note_path(@note), class: "btn btn-default" %>
+  <%= link_to "Delete", note_path(@note), class: "btn btn-default" %>
+  <%= link_to "Previous", medication_path(@medication), class: "btn btn-default" %>
+  <%= link_to "Chart", user_medications_path(@user), class: "btn btn-default" %>
+</nav>
