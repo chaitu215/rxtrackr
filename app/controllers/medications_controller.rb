@@ -3,9 +3,8 @@ class MedicationsController < ApplicationController
                 only: [:index, :show, :destroy, :edit, :create, :update]
   before_action :set_user,
                 only: [:index, :create]
-  before_action :set_medication, 
+  before_action :set_medication,
                 only: [:show, :edit, :update]
-  before_action :set_note, only: [:show]
 
   def index
     @medications = @user.medications.all
@@ -61,7 +60,7 @@ class MedicationsController < ApplicationController
     end
 
     def set_note
-      @note = Note.find_by(params[:id])
+      @note = Note.find(params[:id])
     end
 
     def medication_params

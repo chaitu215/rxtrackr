@@ -1,2 +1,4 @@
 <h1>Edit note</h1>
 <%= render 'form' %>
+<%= link_to "Delete", note_path(@note),
+  method: :delete, class: "btn btn-default" %>

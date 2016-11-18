@@ -1,7 +1,7 @@
 class NotesController < ApplicationController
   before_action :authenticate_user!,
                 only: [:index, :show, :destroy, :edit, :create, :update]
-  before_action :set_medication, only: [:create, :show]
+  before_action :set_medication, only: [:create]
   before_action :set_note,       only: [:show, :edit, :update]
 
   def index
@@ -36,10 +36,13 @@ class NotesController < ApplicationController
   end
 
   def show
-    @note = @medication.notes.last
   end
 
   def destroy
+    note = Note.find_by(params[:id])
+    note.destroy
+    redirect_to notes_path(note),
+      notice: "Note was successfully deleted."
   end
 
   private

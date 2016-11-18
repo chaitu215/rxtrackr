@@ -6,10 +6,11 @@ Rails.application.routes.draw do
   get  '/contact', to: 'static_pages#contact'
   get  '/privacy', to: 'static_pages#privacy'
   get  '/terms',   to: 'static_pages#terms'
-  resources :users, only: [:index, :show] do
+  resources :users, only: [:index, :show, :edit, :delete] do
     resources :medications
   end
-  resources :medications do
+  resources :medications
+  resources :medications, only: [:new, :show, :edit, :delete] do
     resources :notes
   end
   resources :notes
