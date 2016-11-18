@@ -1,35 +1,50 @@
-<h1>Your medication</h1>
-<table class="table">
-<tr>
-  <td>Brand name: </td>
-  <td><%= @medication.brand_name %></td>
-</tr>
-<tr>
-  <td>Generic name: </td>
-  <td><%= @medication.generic_name %></td>
-</tr>
-<tr>
-  <td>Dose: </td>
-  <td><%= @medication.dose %></td>
-</tr>
-<tr>
-  <td>Route: </td>
-  <td><%= @medication.administration_route %></td>
-</tr>
-<tr>
-  <td>Frequency: </td>
-  <td><%= @medication.frequency %></td>
-</tr>
-<tr>
-  <td>Doctor or OTC? </td>
-  <td><%= @medication.doctor %></td>
-</tr>
-</table>
-<nav>
-  <%= link_to "Edit", edit_medication_path(@medication), class: "btn btn-default" %>
-  <%= link_to "Delete", medication_path(@medication),
-      method: :delete, class: "btn btn-default" %>
-  <%= link_to "New", new_user_medication_path(@medication.user), class: "btn btn-default" %>
-  <%= link_to "Chart", user_medications_path(@medication.user), class: "btn btn-default" %>
-  <%= link_to "Add notes", new_medication_note_path(@medication), class: "btn btn-default" %>
-</nav>
+<div class="row">
+  <div class="col-md-6 col-md-offset-1">
+    <table class="table table-bordered">
+    <tr>
+      <td>Brand name: </td>
+      <td><%= @medication.brand_name %></td>
+    </tr>
+    <tr>
+      <td>Generic name: </td>
+      <td><%= @medication.generic_name %></td>
+    </tr>
+    <tr>
+      <td>Dose: </td>
+      <td><%= @medication.dose %></td>
+    </tr>
+    <tr>
+      <td>Route: </td>
+      <td><%= @medication.administration_route %></td>
+    </tr>
+    <tr>
+      <td>Frequency: </td>
+      <td><%= @medication.frequency %></td>
+    </tr>
+    <tr>
+      <td>Doctor or OTC? </td>
+      <td><%= @medication.doctor %></td>
+    </tr>
+    </table>
+    <nav>
+      <%= link_to "New", new_user_medication_path(@medication.user), class: "btn btn-default" %>
+      <%= link_to "Edit", edit_medication_path(@medication), class: "btn btn-default" %>
+      <%= link_to "Delete", medication_path(@medication),
+          method: :delete, class: "btn btn-default" %>
+      <%= link_to "Chart", user_medications_path(@medication.user), class: "btn btn-default" %>
+    </nav>
+  </div>
+  <aside class="col-md-4 col-md-offset-1">
+    <h3>Most Recent Notes</h3>
+    <% if @note %>
+      <p><%= @note.content %></p>
+      <nav>
+        <%= link_to "Edit", edit_note_path(@note), class: "btn btn-default" %>
+        <%= link_to "Delete", notes_path(@note), method: :delete, class: "btn btn-default" %>
+        <%= link_to "View All", medication_notes_path(@medication), class: "btn btn-default" %>
+    <% else %>
+        <%= link_to "New", new_medication_note_path(@medication), class: "btn btn-default" %>
+    <% end %>
+      </nav>
+  </aside>
+</div>
