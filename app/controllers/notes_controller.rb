@@ -37,7 +37,6 @@ class NotesController < ApplicationController
   end
 
   def show
-    @medication = @note.medication
   end
 
   def destroy
