@@ -1,7 +1,7 @@
 class NotesController < ApplicationController
   before_action :authenticate_user!,
                 only: [:index, :show, :edit, :create, :update]
-  before_action :set_medication, only: [:create]
+  before_action :set_medication, only: [:create, :show]
   before_action :set_note,       only: [:show, :edit, :update, :destroy]
   before_action :set_user,       only: [:show]
 
@@ -37,7 +37,6 @@ class NotesController < ApplicationController
   end
 
   def show
-    @medication = @note.medication
   end
 
   def destroy
@@ -49,7 +48,8 @@ class NotesController < ApplicationController
   private
 
     def set_medication
-      @medication = Medication.find_by(params[:id])
+      @note = Note.find(params[:id])
+      @medication = @note.medication
     end
 
     def set_note
