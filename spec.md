@@ -11,7 +11,10 @@ Medication has many notes.
 
 - [x] Include at least one belongs_to relationship (x belongs_to y e.g. Post belongs_to User)
 
-  Medication belongs to user.
+ ```ruby
+Medication belongs to user.
+Note belongs to medication.
+```
 
 - [x] Include at least one has_many through relationship (x has_many y through z e.g. Recipe has_many Items through Ingredients)
 
@@ -33,7 +36,8 @@ Medication has many notes.
 
   ```html
   /medications/new
-  /notes/new```
+  /notes/new
+```
 
 - [x] Include signup (how e.g. Devise) _Devise_
 - [x] Include login (how e.g. Devise) _Devise_
@@ -47,6 +51,7 @@ Medication has many notes.
 - [x] Include form display of validation errors (form URL e.g. /recipes/new)
 
   Validation error messages and custom messages displayed after form submission, along with confirmation after successful delete.
+
 
 Confirm:
 - [x] The application is pretty DRY
