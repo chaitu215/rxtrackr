@@ -26,7 +26,23 @@ Note belongs to medication.
 
 - [x] Include reasonable validations for simple model objects (list of model objects with validations e.g. User, Recipe, Ingredient, Item)
 
- Validates presence of medication brand or generic name through custom validation on Medication model.
+```ruby
+class Note
+  validates :medication_id, presence: true
+  validates :content, presence: true
+end
+
+class Medication
+  validates :user_id, presence: true
+  validate  :brand_or_generic
+
+  def brand_or_generic
+    if self.brand_name.nil? && self.generic_name.nil?
+      errors.add(:brand_or_generic, "must have either a brand or generic name")
+    end
+  end
+end
+ ```
 
 - [x] Include a class level ActiveRecord scope method (model object & class method name and URL to see the working feature e.g. User.most_recipes URL: /users/most_recipes)
 
