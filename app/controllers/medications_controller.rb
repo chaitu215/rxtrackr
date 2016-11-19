@@ -52,7 +52,7 @@ class MedicationsController < ApplicationController
   private
 
     def set_user
-      @user = User.find_by(params[:id])
+      @user = current_user
     end
 
     def set_medication
