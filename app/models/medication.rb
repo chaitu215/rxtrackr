@@ -12,8 +12,10 @@ class Medication < ApplicationRecord
       administration_route_missing
     elsif self.frequency.empty?
       frequency_missing
-    else self.doctor.empty?
+    elsif self.doctor.empty?
       need_doctor_or_otc
+    else
+      "Medication was saved successfully."
     end
   end
 
