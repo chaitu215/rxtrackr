@@ -17,8 +17,8 @@ class MedicationsController < ApplicationController
   def create
     @medication = @user.medications.build(medication_params)
     if @medication.save
-      redirect_to @medication,
-      notice: "Medication was successfully added."
+      @notice = @medication.check_for_missing_info
+      redirect_to @medication, notice: @notice
     else
       render :new, notice: "Please try again."
     end
@@ -30,8 +30,8 @@ class MedicationsController < ApplicationController
   def update
     @medication.update(medication_params)
     if @medication.save
-      redirect_to @medication,
-        notice: "Medication was successfully edited."
+      @notice = @medication.check_for_missing_info
+      redirect_to @medication, notice: @notice
     else
       render :edit, notice: "Please try again."
     end

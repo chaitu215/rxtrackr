@@ -5,6 +5,34 @@ class Medication < ApplicationRecord
   validates :user_id, presence: true
   validate  :brand_or_generic
 
+  def check_for_missing_info
+    if self.dose.empty?
+      need_dose_info
+    elsif self.administration_route.empty?
+      administration_route_missing
+    elsif self.frequency.empty?
+      frequency_missing
+    else self.doctor.empty?
+      need_doctor_or_otc
+    end
+  end
+
+  def need_dose_info
+    "You are missing the dose information. How much of this medicine is taken? Please edit."
+  end
+
+  def administration_route_missing
+    "How is this medicine taken? For example, is it a pill or liquid? Please edit."
+  end
+
+  def frequency_missing
+    "How often is this medicine taken? Please edit."
+  end
+
+  def need_doctor_or_otc
+    "You are missing prescribing doctor information. Is this an over the counter medicine? Please edit."
+  end
+
   private
 
     def brand_or_generic
