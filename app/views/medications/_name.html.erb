@@ -1,0 +1,5 @@
+<% if @user.first_name.length > 20 || @user.last_name.length > 20 %>
+  <h4><%= @user.first_name %><br><%= @user.last_name %></h4>
+<% else %>
+  <h4><%= @user.first_name %> <%= @user.last_name %></h4>
+<% end %>

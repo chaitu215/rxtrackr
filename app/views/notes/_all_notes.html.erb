@@ -1,0 +1,5 @@
+<ul>
+  <% @notes.each do |n| %>
+    <li><%= n.content %>, <em><%= n.updated_at.strftime("%m-%e-%Y") %></em>
+  <% end %>
+</ul>

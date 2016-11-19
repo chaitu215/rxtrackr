@@ -1,24 +1,11 @@
 <h1>Current Medications</h1>
-
 <table class="table table-hover table-striped table-responsive">
   <thead>
     <tr>
-      <th>
-          <h3>Name:</h3>
-      </th>
-      <th colspan=3>
-        <% if @user.first_name.length > 20 || @user.last_name.length > 20 %>
-        <h4><%= @user.first_name %><br><%= @user.last_name %></h4>
-        <% else %>
-        <h4><%= @user.first_name %> <%= @user.last_name %></h4>
-        <% end %>
-      </th>
-      <th>
-        <h3>Birthdate: </h3>
-      </th>
-      <th>
-        <h4><%= @user.birthdate.strftime("%m-%e-%Y") %></h4>
-      </th>
+      <th><h3>Name:</h3></th>
+      <th colspan=3><%= render 'name' %></th>
+      <th><h3>Birthdate: </h3></th>
+      <th><%= render 'birthdate' %></th>
     </tr>
     <tr>
       <th>Brand Name</th>
@@ -29,15 +16,6 @@
       <th>Prescribing Doctor or OTC</th>
     </tr>
   </thead>
-    <tr>
-      <% @user.medications.each do |m| %>
-      <td><%= link_to m.brand_name, medication_path(m) unless m.brand_name.nil? %></td>
-      <td><%= link_to m.generic_name, medication_path(m) unless m.generic_name.nil? %></td>
-      <td><%= m.dose %></td>
-      <td><%= m.administration_route %></td>
-      <td><%= m.frequency %></td>
-      <td><%= m.doctor %></td>
-    </tr>
-    <% end %>
+    <%= render 'all_medications' %>
   </table>
   <%= link_to "Add a new medication", new_user_medication_path(@user) %>

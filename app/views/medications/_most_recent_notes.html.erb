@@ -1,0 +1,8 @@
+<% if @medication.notes.any? %>
+  <p><%= @note.content %></p>
+  <nav>
+  <%= render 'notes_nav' %>
+<% else %>
+  <%= link_to "New", new_medication_note_path(@medication), class: "btn btn-default" %>
+<% end %>
+  </nav>

@@ -27,25 +27,11 @@
     </tr>
     </table>
     <nav>
-      <%= link_to "New", new_user_medication_path(@medication.user), class: "btn btn-default" %>
-      <%= link_to "Edit", edit_medication_path(@medication), class: "btn btn-default" %>
-      <%= link_to "Delete", medication_path(@medication),
-          method: :delete, class: "btn btn-default" %>
-      <%= link_to "Chart", user_medications_path(@medication.user), class: "btn btn-default" %>
+      <%= render 'medications_nav' %>
     </nav>
   </div>
   <aside class="col-md-4 col-md-offset-1">
     <h3>Most Recent Notes</h3>
-    <% if @medication.notes.any? %>
-      <p><%= @note.content %></p>
-      <nav>
-        <%= link_to "Edit", edit_note_path(@note), class: "btn btn-default" %>
-        <%= link_to "Delete", note_path(@note), method: :delete, class: "btn btn-default" %>
-        <%= link_to "View All", medication_notes_path(@medication), class: "btn btn-default" %>
-        <%= link_to "New", new_medication_note_path(@medication), class: "btn btn-default" %>
-    <% else %>
-        <%= link_to "New", new_medication_note_path(@medication), class: "btn btn-default" %>
-    <% end %>
-      </nav>
+    <%= render 'most_recent_notes' %>
   </aside>
 </div>
