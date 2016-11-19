@@ -56,7 +56,7 @@ class NotesController < ApplicationController
     end
 
     def set_user
-      @user = User.find_by(params[:id])
+      @user = current_user
     end
 
     def note_params
