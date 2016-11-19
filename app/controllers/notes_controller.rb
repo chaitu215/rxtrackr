@@ -16,10 +16,10 @@ class NotesController < ApplicationController
   def create
     @note = @medication.notes.build(note_params)
     if @note.save
-      redirect_to @note,
-      notice: "Note was successfully added."
+      flash[:success] = "Note was successfully added."
+      redirect_to @note
     else
-      render :new, notice: "Please try again."
+      render :new
     end
   end
 
@@ -29,10 +29,10 @@ class NotesController < ApplicationController
   def update
     @note.update(note_params)
     if @note.save
-      redirect_to @note,
-        notice: "Note was successfully edited."
+      flash[:success] = "Note was successfully edited."
+      redirect_to @note
     else
-      render :edit, notice: "Please try again."
+      render :edit
     end
   end
 
@@ -41,8 +41,8 @@ class NotesController < ApplicationController
 
   def destroy
     @note.destroy
-    redirect_to notes_path(@note),
-      notice: "Note was successfully deleted."
+    flash[:success] = "Note was successfully deleted."
+    redirect_to notes_path(@note)
   end
 
   private

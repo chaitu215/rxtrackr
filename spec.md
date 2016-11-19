@@ -26,7 +26,7 @@ Note belongs to medication.
 
 - [x] Include reasonable validations for simple model objects (list of model objects with validations e.g. User, Recipe, Ingredient, Item)
 
-```ruby
+ ```ruby
 class Note
   validates :medication_id, presence: true
   validates :content, presence: true

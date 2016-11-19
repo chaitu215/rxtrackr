@@ -48,10 +48,10 @@ h1 {
 h2 {
   font-size: 2em;
   letter-spacing: -1px;
+  margin-top: 30px;
   margin-bottom: 30px;
   text-align: center;
   font-weight: normal;
-  color: $gray-light;
 }
 
 p {
@@ -104,5 +104,32 @@ footer {
       float: left;
       margin-left: 15px;
     }
+  }
+}
+
+/* forms */
+
+.field {
+  font-size: 16px;
+  padding-top: 5px;
+}
+
+.actions {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  color: black;
+}
+
+#error_explanation {
+  @extend .has-error;
+  .form-control {
+  color: $state-danger-text;
+  }
+}
+
+.field_with_errors {
+  @extend .has-error;
+  .form-control {
+    color: $state-danger-text;
   }
 }

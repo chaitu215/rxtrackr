@@ -17,10 +17,10 @@ class MedicationsController < ApplicationController
   def create
     @medication = @user.medications.build(medication_params)
     if @medication.save
-      @notice = @medication.check_for_missing_info
-      redirect_to @medication, notice: @notice
+      flash[:success] = "Saved successfully"
+      redirect_to @medication
     else
-      render :new, notice: "Please try again."
+      render :new
     end
   end
 
@@ -30,23 +30,25 @@ class MedicationsController < ApplicationController
   def update
     @medication.update(medication_params)
     if @medication.save
-      @notice = @medication.check_for_missing_info
-      redirect_to @medication, notice: @notice
+      flash[:success] = "Saved successfully"
+      redirect_to @medication
     else
-      render :edit, notice: "Please try again."
+      render :edit
     end
   end
 
   def show
-    @note = @medication.notes.last
+    @note = @medication.notes.first
+    @message = @medication.check_for_missing_info
+    flash.now[:info] = @message unless @message.nil?
   end
 
   def destroy
     medication = Medication.find(params[:id])
     user = medication.user
     medication.destroy
-    redirect_to user_medications_path(user),
-      notice: "Medication was successfully deleted."
+    flash[:success] = "Medication was successfully deleted."
+    redirect_to user_medications_path(user)
   end
 
   private
