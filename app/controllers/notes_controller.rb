@@ -1,7 +1,8 @@
 class NotesController < ApplicationController
+  include ApplicationHelper
+
   before_action :authenticate_user!,
                 only: [:index, :show, :edit, :create, :update]
-  before_action :set_medication, only: [:create]
   before_action :set_note,       only: [:show, :edit, :update, :destroy]
   before_action :set_user,       only: [:show]
 
@@ -13,7 +14,9 @@ class NotesController < ApplicationController
     @note = Note.new
   end
 
+  # works from console, adds note to wrong med in controller
   def create
+    @medication = Medication.find_by(params[:id])
     @note = @medication.notes.build(note_params)
     if @note.save
       flash[:success] = "Note was successfully added."
@@ -27,6 +30,7 @@ class NotesController < ApplicationController
   end
 
   def update
+    @medication = Medication.find_by(params[:id])
     @note.update(note_params)
     if @note.save
       flash[:success] = "Note was successfully edited."
@@ -37,6 +41,7 @@ class NotesController < ApplicationController
   end
 
   def show
+    find_note
   end
 
   def destroy
@@ -47,12 +52,8 @@ class NotesController < ApplicationController
 
   private
 
-    def set_medication
-      @medication = Medication.find_by(params[:id])
-    end
-
     def set_note
-      @note = Note.find(params[:id])
+      @note = Note.find_by(params[:medication_id])
     end
 
     def set_user

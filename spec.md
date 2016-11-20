@@ -37,7 +37,7 @@ class Medication
   validate  :brand_or_generic
 
   def brand_or_generic
-    if self.brand_name.nil? && self.generic_name.nil?
+    if self.brand_name.empty? && self.generic_name.empty?
       errors.add(:brand_or_generic, "must have either a brand or generic name")
     end
   end

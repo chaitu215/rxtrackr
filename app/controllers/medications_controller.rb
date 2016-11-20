@@ -1,4 +1,6 @@
 class MedicationsController < ApplicationController
+  include ApplicationHelper
+
   before_action :authenticate_user!,
                 only: [:index, :show, :destroy, :edit, :create, :update]
   before_action :set_user,
@@ -38,7 +40,7 @@ class MedicationsController < ApplicationController
   end
 
   def show
-    @note = @medication.notes.first
+    find_note
     @message = @medication.check_for_missing_info
     flash.now[:info] = @message unless @message.nil?
   end
