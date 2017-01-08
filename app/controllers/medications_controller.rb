@@ -40,7 +40,7 @@ class MedicationsController < ApplicationController
   end
 
   def show
-    find_note
+    @note = Note.find_by(params[:id])
     @message = @medication.check_for_missing_info
     flash.now[:info] = @message unless @message.nil?
   end

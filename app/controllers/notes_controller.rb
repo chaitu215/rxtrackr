@@ -5,6 +5,7 @@ class NotesController < ApplicationController
                 only: [:index, :show, :edit, :create, :update]
   before_action :set_note,       only: [:show, :edit, :update, :destroy]
   before_action :set_user,       only: [:show]
+  before_action :set_medication, only: [:new,]
 
   def index
     @notes = Note.all
@@ -14,10 +15,8 @@ class NotesController < ApplicationController
     @note = Note.new
   end
 
-  # works from console, adds note to wrong med in controller
   def create
-    @medication = Medication.find_by(params[:id])
-    @note = @medication.notes.build(note_params)
+    @note = Note.create(note_params)
     if @note.save
       flash[:success] = "Note was successfully added."
       redirect_to @note
@@ -30,7 +29,6 @@ class NotesController < ApplicationController
   end
 
   def update
-    @medication = Medication.find_by(params[:id])
     @note.update(note_params)
     if @note.save
       flash[:success] = "Note was successfully edited."
@@ -41,7 +39,6 @@ class NotesController < ApplicationController
   end
 
   def show
-    find_note
   end
 
   def destroy
@@ -60,7 +57,11 @@ class NotesController < ApplicationController
       @user = current_user
     end
 
+    def set_medication
+      @medication = Medication.find(params[:medication_id])
+    end
+
     def note_params
-      params.require(:note).permit(:content)
+      params.require(:note).permit(:content, :medication_id)
     end
 end
