@@ -1,5 +1,10 @@
 <ul>
-  <% @notes.each do |n| %>
-    <li><%= n.content %>, <em><%= n.updated_at.strftime("%m-%e-%Y") %></em>
+  <% @medication.notes.each do |n| %>
+    <li>
+      <%= n.content %>,
+      <%= n.medication.brand_name if n.medication.brand_name? %>,
+      <%= n.medication.generic_name if n.medication.generic_name? %>
+      <em><%= n.updated_at.strftime("%m-%e-%Y") %></em>
+    </li>
   <% end %>
 </ul>

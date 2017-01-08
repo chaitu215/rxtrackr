@@ -7,6 +7,7 @@ class MedicationsController < ApplicationController
                 only: [:index, :create]
   before_action :set_medication,
                 only: [:show, :edit, :update]
+  before_action :set_note, only: [:show]
 
   def index
     @medications = @user.medications.all
@@ -40,7 +41,6 @@ class MedicationsController < ApplicationController
   end
 
   def show
-    @note = Note.find_by(params[:id])
     @message = @medication.check_for_missing_info
     flash.now[:info] = @message unless @message.nil?
   end
@@ -64,7 +64,7 @@ class MedicationsController < ApplicationController
     end
 
     def set_note
-      @note = Note.find(params[:id])
+      @note = Note.find_by(params[:medication_id])
     end
 
     def medication_params

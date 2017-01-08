@@ -1,5 +1,5 @@
 <% if @medication.notes.any? %>
-  <p><%= @note.content %></p>
+  <p><%= @medication.notes.first.content %></p>
   <nav>
   <%= render 'notes_nav' %>
 <% else %>
