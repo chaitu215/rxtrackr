@@ -8,7 +8,6 @@ one:
   first_name: "Example"
   last_name:
   email:      "example@example.com"
-  password:   "password"
 #
 # # column: value
 # #
