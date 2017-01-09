@@ -3,9 +3,9 @@ class NotesController < ApplicationController
 
   before_action :authenticate_user!,
                 only: [:index, :show, :edit, :create, :update]
-  before_action :set_note,       only: [:index, :show, :edit, :update, :destroy]
+  before_action :set_note,       only: [:show, :edit, :update, :destroy]
   before_action :set_user,       only: [:show, :destroy]
-  before_action :set_medication, only: [:index, :show, :new]
+  before_action :set_medication, only: [:new, :index]
 
   def index
     @notes = @medication.notes.all
