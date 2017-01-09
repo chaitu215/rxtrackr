@@ -5,6 +5,11 @@
       <%= n.medication.brand_name if n.medication.brand_name? %>,
       <%= n.medication.generic_name if n.medication.generic_name? %>
       <em><%= n.updated_at.strftime("%m-%e-%Y") %></em>
+      <nav>
+        <%= link_to 'Edit', edit_note_path(@note), class: "btn btn-default" %>
+        <%= link_to 'Delete', note_path(@note), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-default" %>
+        <%= link_to 'Return to Medication', medication_path(@medication), class: "btn btn-default" %>
+      </nav>
     </li>
   <% end %>
 </ul>
