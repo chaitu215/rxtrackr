@@ -1,4 +1,4 @@
 <p>First Name: <%= @user.first_name %></p>
 <p>Last Name: <%= @user.last_name %></p>
 <p>Email: <%= @user.email %></p>
-<p>Birthdate: <%= @user.birthdate.strftime("%m-%e-%Y") %></p>
+<p>Birthdate: <%= @user.birthdate.strftime("%m-%e-%Y") if @user.birthdate? %></p>
