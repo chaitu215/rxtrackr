@@ -25,6 +25,12 @@
       <td>Doctor or OTC? </td>
       <td><%= @medication.doctor %></td>
     </tr>
+    <tr>
+      <td colspan="2">
+        <em>Added: <%= @medication.created_at.strftime("%m-%e-%Y") %> &mdash;
+        Updated: <%= @medication.updated_at.strftime("%m-%e-%Y") %></em>
+      </td>
+    </tr>
     </table>
     <nav>
       <%= render 'medications_nav' %>

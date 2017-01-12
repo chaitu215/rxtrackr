@@ -1,5 +1,6 @@
 <nav>
-  <p><%= link_to "Medications", user_medications_path(@user) %></p>
+  <p><%= link_to "Medications Chart", user_medications_path(@user) %></p>
+  <p><%= link_to "Most Recent Medication", most_recent_path(@medication) %></p>
   <p><%= link_to "Edit Profile", edit_user_registration_path(@user),
   class: "btn btn-default" %></p>
   <p><%= button_to "Cancel My Account", registration_path(@user),

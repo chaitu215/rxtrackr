@@ -3,6 +3,7 @@
   <nav>
   <%= render 'notes_nav' %>
 <% else %>
+  <p><em>There are no notes for this medication.</em></p>
   <%= link_to "New", new_medication_note_path(@medication), class: "btn btn-default" %>
 <% end %>
   </nav>

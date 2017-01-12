@@ -27,6 +27,12 @@ class MedicationsController < ApplicationController
     end
   end
 
+  def most_recent
+    @medication = Medication.most_recent
+    flash.now[:info] = "This is the most recently added or updated medication. (Last updated #{@medication.updated_at.strftime("%m-%e-%Y")})"
+    render :show
+  end
+
   def edit
   end
 

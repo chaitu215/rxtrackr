@@ -35,6 +35,10 @@ class Medication < ApplicationRecord
     "You are missing prescribing doctor information. Is this an over the counter medicine? Please edit."
   end
 
+  def self.most_recent
+    Medication.all.order('updated_at DESC').first
+  end
+
   private
 
     def brand_or_generic
