@@ -18,13 +18,13 @@ Note belongs to medication.
 
 - [x] Include at least one has_many through relationship (x has_many y through z e.g. Recipe has_many Items through Ingredients)
 
-```ruby
+ ```ruby
   User has many notes through medications.
 ```
 
 - [x] The "through" part of the has_many through includes at least one user submittable attribute (attribute_name e.g. ingredients.quantity)
 
-```ruby
+ ```ruby
   For "through" relationship, User submitted attribute is notes.content.
 ```
 
@@ -68,13 +68,13 @@ end
 - [x] Include nested resource show or index (URL e.g. users/2/recipes) _users/1/medications_
 - [x] Include nested resource "new" form (URL e.g. recipes/1/ingredients)
 
-```text
+ ```text
   Nested resource "new" form at: medications/1/notes
 ```
 
 - [x] Include form display of validation errors (form URL e.g. /recipes/new)
 
-```text
+ ```text
   Validation error messages and custom messages displayed after form submission, along with confirmation after successful delete.
 ```
 
