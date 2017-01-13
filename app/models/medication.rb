@@ -36,7 +36,9 @@ class Medication < ApplicationRecord
   end
 
   def self.most_recent
-    Medication.all.order('updated_at DESC').first
+    if !Medication.nil?
+      Medication.all.order('updated_at DESC').first
+    end
   end
 
   private

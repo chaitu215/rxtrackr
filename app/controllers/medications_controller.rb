@@ -4,7 +4,7 @@ class MedicationsController < ApplicationController
   before_action :authenticate_user!,
                 only: [:index, :show, :destroy, :edit, :create, :update]
   before_action :set_user,
-                only: [:index, :create]
+                only: [:index, :create, :most_recent]
   before_action :set_medication,
                 only: [:show, :edit, :update]
   before_action :set_note, only: [:show]
@@ -28,9 +28,13 @@ class MedicationsController < ApplicationController
   end
 
   def most_recent
-    @medication = Medication.most_recent
-    flash.now[:info] = "This is the most recently added or updated medication. (Last updated #{@medication.updated_at.strftime("%m-%e-%Y")})"
-    render :show
+    if @medication = Medication.most_recent
+      flash.now[:info] = "This is the most recently added or updated medication. (Last updated #{@medication.updated_at.strftime("%m-%e-%Y")})"
+      render :show
+    else
+      flash.now[:danger] = "There are no medications."
+      render :index
+    end
   end
 
   def edit
