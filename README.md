@@ -1,6 +1,6 @@
 # RxTrackr
 
-RxTrackr is a medication log built using Ruby on Rails and ActiveRecord.
+RxTrackr is a medication log built using Ruby on Rails and Active Record.
 
 After creating a password secure account (using Omniauth and Devise), users may document medications and related details.
 
@@ -9,8 +9,8 @@ To use the app locally:
  2. Run `bundle install`.
  3. Then `rails db:migrate`.
  4. Start `rails server`, and
- 5. Navigate to `http://localhost:3000`.  
- 6. To enable Facebook login you must create your own FACEBOOK_KEY and FACEBOOK_SECRET.
+ 5. Navigate to `http://localhost:3000`.
+ 6. To enable Facebook login you must create your own `FACEBOOK_KEY` and `FACEBOOK_SECRET`.
 
 # Contributions
 
