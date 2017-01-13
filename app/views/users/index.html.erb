@@ -1,1 +1,9 @@
-<h1>Users Index Page</h1>
+<h1>Welcome, <%= current_user.first_name %></h1>
+<div  class="row">
+  <div class="center">
+    <p>
+      <%= link_to "Medications Chart", user_medications_path(@user) %> |
+      <%= link_to "Most Recent Medication", most_recent_path(@medication) %>
+    </p>
+  </div>
+</div>
