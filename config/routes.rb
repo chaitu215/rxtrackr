@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   devise_for :users, controllers: { registrations:      'users/registrations',
                                     omniauth_callbacks: 'users/omniauth_callbacks' }
+  match '/auth/:provider/callback', to: 'devise/sessions#create', via: [:get, :post]
+  match '/logout', to: 'devise/sessions#destroy', via: [:get, :post]
   root 'static_pages#home'
   get  '/about',   to: 'static_pages#about'
   get  '/contact', to: 'static_pages#contact'
