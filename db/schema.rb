@@ -10,7 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161117153505) do
+ActiveRecord::Schema.define(version: 20170114222610) do
+
+  create_table "identities", force: :cascade do |t|
+    t.string   "uid"
+    t.string   "provider"
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_identities_on_user_id"
+  end
 
   create_table "medications", force: :cascade do |t|
     t.string   "generic_name"
@@ -30,6 +39,7 @@ ActiveRecord::Schema.define(version: 20161117153505) do
     t.integer  "medication_id"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
+    t.integer  "user_id"
     t.index ["medication_id", "created_at"], name: "index_notes_on_medication_id_and_created_at"
     t.index ["medication_id"], name: "index_notes_on_medication_id"
   end

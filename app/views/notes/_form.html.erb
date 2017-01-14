@@ -3,6 +3,7 @@
     <%= form_for(@note) do |f| %>
     <%= render 'shared/error_messages', object: f.object %>
       <div class="field">
+        <%= f.hidden_field :user_id, value: @user.id %>
         <%= f.hidden_field :medication_id, value: @medication.id %>
         <%= f.label :content, "Notes" %> <br />
         <%= f.text_field :content, autofocus: true, class: 'form-control' %>

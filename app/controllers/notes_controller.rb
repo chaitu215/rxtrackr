@@ -4,7 +4,7 @@ class NotesController < ApplicationController
   before_action :authenticate_user!,
                 only: [:index, :show, :edit, :create, :update]
   before_action :set_note,       only: [:show, :edit, :update, :destroy]
-  before_action :set_user,       only: [:show, :destroy]
+  before_action :set_user,       only: [:new, :create, :show, :destroy]
   before_action :set_medication, only: [:new, :index]
 
   def index
@@ -16,7 +16,7 @@ class NotesController < ApplicationController
   end
 
   def create
-    @note = Note.create(note_params)
+    @note = @user.notes.build(note_params)
     if @note.save
       flash[:success] = "Note was successfully added."
       redirect_to @note
@@ -63,6 +63,6 @@ class NotesController < ApplicationController
     end
 
     def note_params
-      params.require(:note).permit(:content, :medication_id)
+      params.require(:note).permit(:content, :medication_id, :user_id)
     end
 end
