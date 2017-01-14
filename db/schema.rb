@@ -10,16 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170113211241) do
-
-  create_table "identities", force: :cascade do |t|
-    t.string   "uid"
-    t.string   "provider"
-    t.integer  "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_identities_on_user_id"
-  end
+ActiveRecord::Schema.define(version: 20161117153505) do
 
   create_table "medications", force: :cascade do |t|
     t.string   "generic_name"

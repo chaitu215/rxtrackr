@@ -7,7 +7,6 @@ class User < ApplicationRecord
 
   has_many :medications, dependent: :destroy
   has_many :notes,       through: :medications
-  has_many :identities
 
   validates :first_name, presence: true, length: { maximum: 40 }
   validates :email,      presence: true, uniqueness: true
