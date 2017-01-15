@@ -1,0 +1,20 @@
+<table class="table table-hover table-striped table-responsive">
+  <thead>
+    <tr>
+      <th>Brand Name</th>
+      <th>Generic Name</th>
+      <th>Note</th>
+      <th>Date</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @user.notes.each do |n| %>
+    <tr>
+      <td><%= n.medication.brand_name if n.medication.brand_name? %></td>
+      <td><%= n.medication.generic_name if n.medication.generic_name? %></td>
+      <td><%= n.content %></td>
+      <td><em><%= n.updated_at.strftime("%m-%e-%Y") %></em></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>

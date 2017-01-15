@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   get  '/privacy', to: 'static_pages#privacy'
   get  '/terms',   to: 'static_pages#terms'
   get  '/medications/most_recent', to:'medications#most_recent', as: '/most_recent'
+  get  '/users/:id/user_notes', to: 'users#user_notes', as: '/user_notes'
   resources :users, only: [:index, :show, :edit, :delete] do
     resources :medications
   end
