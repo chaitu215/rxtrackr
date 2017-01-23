@@ -6,7 +6,8 @@ class User < ApplicationRecord
          :omniauthable, :omniauth_providers => [:facebook]
 
   has_many :medications, dependent: :destroy
-  has_many :notes,       through: :medications
+  has_many :notes,       through:   :medications
+  has_many :identities,  dependent: :destroy
 
   validates :first_name, presence: true, length: { maximum: 40 }
   validates :email,      presence: true, uniqueness: true
