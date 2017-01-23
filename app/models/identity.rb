@@ -21,7 +21,7 @@ class Identity < ActiveRecord::Base
       identity = Identity.create!(
                         provider: auth.provider,
                         uid:      auth.uid,
-                        user_id:  registered_user.id
+                        user_id:  user.id
                         )
       user
     end
