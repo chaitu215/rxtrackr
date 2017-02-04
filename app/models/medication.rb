@@ -5,6 +5,8 @@ class Medication < ApplicationRecord
   validates :user_id, presence: true
   validate  :brand_or_generic
 
+  accepts_nested_attributes_for :notes
+
   def check_for_missing_info
     if self.dose.empty?
       need_dose_info

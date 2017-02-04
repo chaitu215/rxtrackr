@@ -81,6 +81,6 @@ class MedicationsController < ApplicationController
     def medication_params
       params.require(:medication).permit(:brand_name, :generic_name,
                                   :dose, :administration_route,
-                                  :frequency, :doctor)
+                                  :frequency, :doctor, :note_ids => [], :notes_attributes => [:content])
     end
 end
