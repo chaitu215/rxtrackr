@@ -1,6 +1,6 @@
 class Medication < ApplicationRecord
   belongs_to :user
-  has_many   :notes, dependent: :destroy
+  has_many   :notes, inverse_of: :medication, dependent: :destroy
 
   validates :user_id, presence: true
   validate  :brand_or_generic
