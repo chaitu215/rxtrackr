@@ -4,7 +4,7 @@ class MedicationsController < ApplicationController
   before_action :authenticate_user!,
                 only: [:index, :show, :destroy, :edit, :create, :update]
   before_action :set_user,
-                only: [:index, :new, :create, :most_recent]
+                only: [:index, :new, :create, :edit, :most_recent]
   before_action :set_medication,
                 only: [:show, :edit, :update]
   before_action :set_note, only: [:show]
