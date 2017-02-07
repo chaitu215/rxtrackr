@@ -133,3 +133,16 @@ footer {
     color: $state-danger-text;
   }
 }
+
+.panel {
+  margin-top: 20px;
+  margin-bottom: 40px;
+  padding: 10px;
+  input {
+    padding: 5px;
+    &[type=checkbox] {
+      padding-right: 5px;
+      margin-right: 5px;
+    }
+  }
+}
