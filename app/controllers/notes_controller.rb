@@ -16,12 +16,18 @@ class NotesController < ApplicationController
   end
 
   def create
-    @note = @user.notes.build(note_params)
-    if @note.save
-      flash[:success] = "Note was successfully added."
-      redirect_to @note
-    else
+    @medication = Medication.find_by(params[:id])
+    @note = @medication.notes.build(note_params)
+    if @note.content.empty?
+      flash[:danger] = "Note may not be blank."
       render :new
+    else
+      if @note.save
+        flash[:success] = "Note was successfully added."
+        redirect_to @note
+      else
+        render :new
+      end
     end
   end
 
