@@ -16,6 +16,7 @@ class NotesController < ApplicationController
   end
 
   def create
+    @medication = Medication.find_by(params[:id])
     @note = @user.notes.build(note_params)
     if @note.content.empty?
       flash[:danger] = "Note may not be blank."
