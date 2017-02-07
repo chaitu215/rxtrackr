@@ -16,4 +16,5 @@ Rails.application.routes.draw do
     resources :notes
   end
   resources :notes
+  resources :allergies
 end
