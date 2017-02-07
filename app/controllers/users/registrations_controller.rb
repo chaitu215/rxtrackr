@@ -1,5 +1,6 @@
 class Users::RegistrationsController < Devise::RegistrationsController
 
+
   private
 
   def sign_up_params
@@ -7,7 +8,10 @@ class Users::RegistrationsController < Devise::RegistrationsController
   end
 
   def account_update_params
-    params.require(:user).permit(:first_name, :last_name, :birthdate, :email, :password, :password_confirmation, :current_password)
+    params.require(:user).permit(:first_name, :last_name, :birthdate, :email,
+                                 :password, :password_confirmation, :current_password,
+                                 allergy_ids: [], user_allergy_ids: [],
+                                 allergies_attributes: [:name, :description])
   end
 
   def update_resource(resource, params)

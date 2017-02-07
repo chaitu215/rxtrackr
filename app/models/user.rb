@@ -8,7 +8,8 @@ class User < ApplicationRecord
   has_many :medications, dependent: :destroy
   has_many :notes,       through:   :medications
   has_many :identities,  dependent: :destroy
-  has_many :allergies,   through:   :user_allergies, dependent: :destroy
+  has_many :allergies,   dependent: :destroy, through: :user_allergies
+  has_many :user_allergies
 
   validates :first_name, presence: true, length: { maximum: 40 }
   validates :email,      presence: true, uniqueness: true
@@ -19,7 +20,7 @@ class User < ApplicationRecord
   after_initialize :set_default_role
 
   def allergies_attributes=(allergies_attributes)
-    if attribute[:name].present?
+    if allergies_attributes[:name].present?
       allergy = Allergy.find_or_create_by(attribute)
       if !self.user_allergies.include?(attribute[:name])
         self.user_allergies.build(allergy_id: allergy.id)
