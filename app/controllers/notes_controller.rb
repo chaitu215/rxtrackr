@@ -35,11 +35,10 @@ class NotesController < ApplicationController
   end
 
   def update
-    @medication = Medication.find_by(params[:id])
     @note.update(note_params)
     if @note.content.empty?
       flash[:danger] = "Note may not be blank."
-      redirect_to edit_note_path
+      render :edit
     else
       if @note.save
         flash[:success] = "Note was successfully edited."
