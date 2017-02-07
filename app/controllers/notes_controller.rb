@@ -4,7 +4,7 @@ class NotesController < ApplicationController
   before_action :authenticate_user!,
                 only: [:index, :show, :edit, :create, :update]
   before_action :set_note,       only: [:show, :edit, :update, :destroy]
-  before_action :set_user,       only: [:new, :create, :show, :destroy]
+  before_action :set_user,       only: [:new, :create, :update, :show, :destroy]
   before_action :set_medication, only: [:new, :index]
 
   def index
@@ -19,7 +19,7 @@ class NotesController < ApplicationController
     @medication = Medication.find_by(params[:id])
     @note = @user.notes.build(note_params)
     if @note.content.empty?
-      flash[:danger] = "Note may not be blank."
+      flash.now[:danger] = "Note may not be blank."
       render :new
     else
       if @note.save
@@ -35,12 +35,18 @@ class NotesController < ApplicationController
   end
 
   def update
+    @medication = Medication.find_by(params[:id])
     @note.update(note_params)
-    if @note.save
-      flash[:success] = "Note was successfully edited."
-      redirect_to @note
+    if @note.content.empty?
+      flash[:danger] = "Note may not be blank."
+      redirect_to edit_note_path
     else
-      render :edit
+      if @note.save
+        flash[:success] = "Note was successfully edited."
+        redirect_to @note
+      else
+        render :edit
+      end
     end
   end
 
