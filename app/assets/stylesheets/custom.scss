@@ -138,11 +138,15 @@ footer {
   margin-top: 20px;
   margin-bottom: 40px;
   padding: 10px;
+  label {
+    margin: 5px;
+  }
   input {
     padding: 5px;
     &[type=checkbox] {
       padding-right: 5px;
       margin-right: 5px;
+      margin-left: 5px;
     }
   }
 }
