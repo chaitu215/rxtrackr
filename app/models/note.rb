@@ -1,7 +1,5 @@
 class Note < ApplicationRecord
-  belongs_to :medication, inverse_of: :notes
-
+  belongs_to :medication, inverse_of: :notes, optional: true
+  
   default_scope -> { order(created_at: :desc) }
-
-  validates :content, presence: true
 end

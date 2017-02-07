@@ -33,6 +33,14 @@
         <%= f.text_field :doctor, class: 'form-control' %>
       </div>
 
+      <div class="field">
+        <%= f.fields_for :notes do |ff| %>
+        <%= ff.label :note %>
+        <%= ff.hidden_field :user_id, value: @user.id %>
+        <%= ff.text_field :content, class: 'form-control' %>
+        <% end %>
+      </div>
+
       <div class="actions">
         <%= f.submit "Save", class: "btn btn-default" %>
       </div>

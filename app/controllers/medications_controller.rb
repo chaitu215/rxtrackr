@@ -4,7 +4,7 @@ class MedicationsController < ApplicationController
   before_action :authenticate_user!,
                 only: [:index, :show, :destroy, :edit, :create, :update]
   before_action :set_user,
-                only: [:index, :create, :most_recent]
+                only: [:index, :new, :create, :most_recent]
   before_action :set_medication,
                 only: [:show, :edit, :update]
   before_action :set_note, only: [:show]
@@ -15,6 +15,7 @@ class MedicationsController < ApplicationController
 
   def new
     @medication = Medication.new
+    @note = @medication.notes.build
   end
 
   def create
@@ -81,6 +82,9 @@ class MedicationsController < ApplicationController
     def medication_params
       params.require(:medication).permit(:brand_name, :generic_name,
                                   :dose, :administration_route,
-                                  :frequency, :doctor, :note_ids => [], :notes_attributes => [:content])
+                                  :frequency, :doctor,
+                                  notes_attributes: [
+                                  :content, :user_id, :id, :_destroy
+                                  ])
     end
 end
