@@ -30,6 +30,33 @@ class User < ApplicationRecord
     end
   end
 
+# In console:
+# => u=User.find_by_id(1)
+# => u.allergies.select(:name).map(&:name).uniq.sort
+# => Allergy Load (0.1ms)  SELECT "allergies"."name" FROM "allergies" INNER JOIN "user_allergies" ON "allergies"."id" = "user_allergies"."allergy_id" WHERE "user_allergies"."user_id" = ?  [["user_id", 1]]
+# => ["codeine", "dust", "hayfever", "soy"]
+
+# => In browser:
+# => NoMethodError in UsersController#show
+# => undefined method `allergies' for nil:NilClass
+
+  def self.allergy_list
+    if !Allergy.nil?
+      user = User.find_by_id(:id)
+      # below gives all allergies in db, not user's
+      allergy_list = Allergy.select(:name).map(&:name).uniq.sort
+      if allergy_list.length == 1
+        allergy_list
+      elsif allergy_list.length == 2
+        allergy_list.join(" and ")
+      elsif allergy_list.length > 2
+        list = allergy_list[0..-2].join(", ")
+        list << ", and #{allergy_list.last}"
+        list
+      end
+    end
+  end
+
   private
 
     def set_default_role
