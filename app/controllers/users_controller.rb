@@ -6,6 +6,7 @@ class UsersController < ApplicationController
   end
 
   def show
+    @allergy_list = User.allergy_list
   end
 
   def user_notes
