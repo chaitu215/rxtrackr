@@ -6,4 +6,10 @@ class AllergiesController < ApplicationController
       render :allergy_list
     end
   end
+
+  private
+
+  def allergies_params
+    params.require(:allergy).permit(:user_id, :name, :description)
+  end
 end

@@ -6,7 +6,7 @@ class UsersController < ApplicationController
   end
 
   def show
-    @allergy_list = User.allergy_list
+    @allergy_list = current_user.allergies.select(:name).map(&:name).uniq.sort
   end
 
   def user_notes

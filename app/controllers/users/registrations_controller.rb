@@ -11,7 +11,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
     params.require(:user).permit(:first_name, :last_name, :birthdate, :email,
                                  :password, :password_confirmation, :current_password,
                                  allergy_ids: [], user_allergy_ids: [],
-                                 allergies_attributes: [:name, :description])
+                                 allergies_attributes: [:user_id, :name, :description])
   end
 
   def update_resource(resource, params)
