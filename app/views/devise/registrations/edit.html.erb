@@ -42,8 +42,8 @@
         <%= f.fields_for :allergies, current_user.allergies.build do |ff| %>
         <%= ff.label :name, "Add New Allergy Name" %>
         <%= ff.text_field :name, class: 'form-control' %><br />
-        <%= ff.label :description, "Description of Allergic Symptoms" %>
-        <%= ff.text_field :description, class: 'form-control' %>
+        <!-- <%= ff.label :description, "Description of Allergic Symptoms" %> -->
+        <!-- <%= ff.text_field :description, class: 'form-control' %> -->
         <% end %>
       </div>
     </div>
