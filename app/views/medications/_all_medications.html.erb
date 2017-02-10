@@ -5,6 +5,6 @@
   <td><%= m.dose %></td>
   <td><%= m.administration_route %></td>
   <td><%= m.frequency %></td>
-  <td><%= m.doctor %></td>
+  <td><%= m.provider_profiles.find_by(params[:medication_id]).name %></td>
 </tr>
 <% end %>

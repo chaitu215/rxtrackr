@@ -8,10 +8,11 @@ class MedicationsController < ApplicationController
   before_action :set_medication,
                 only: [:show, :edit, :update]
   before_action :set_note, only: [:show]
-  before_action :set_provider_profile, only: [:edit, :update]
+  before_action :set_provider_profile, only: [:index, :edit, :update]
 
   def index
     @medications = @user.medications.all
+    @provider_profiles = @user.provider_profiles.all
   end
 
   def new
