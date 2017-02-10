@@ -32,7 +32,7 @@ class MedicationsController < ApplicationController
   end
 
   def most_recent
-    if @medication = Medication.most_recent
+    if @medication = @user.medications.most_recent
       @provider_profile = @medication.provider_profiles.find_by(params[:medication_id])
       flash.now[:info] = "This is the most recently added or updated medication. (Last updated #{@medication.updated_at.strftime("%m-%e-%Y")})"
       render :show

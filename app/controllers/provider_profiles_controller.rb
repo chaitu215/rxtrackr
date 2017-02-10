@@ -4,7 +4,7 @@ class ProviderProfilesController < ApplicationController
   before_action :set_provider_profile, only: [:index, :edit, :delete]
 
   def index
-    @provider_profiles = ProviderProfile.all
+    @provider_profiles = @user.provider_profiles.all
   end
 
   def provider_profiles
