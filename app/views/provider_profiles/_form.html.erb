@@ -1,0 +1,46 @@
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <%= form_for(@provider_profile) do |f| %>
+    <%= render 'shared/error_messages', object: f.object %>
+    <%= f.hidden_field :user_id, value: @user.id %>
+    <%= f.hidden_field :medication_id, value: @medication_id unless @medication_id.nil? %>
+
+    <div class="field">
+      <%= f.label :name %> <br />
+      <%= f.text_field :name, autofocus: true, class: 'form-control' %>
+    </div>
+
+    <div class="field">
+      <%= f.label :telephone %>
+      <%= f.text_field :telephone, class: 'form-control' %>
+    </div>
+
+    <div class="field">
+      <%= f.label :website, "Provider Website"%> <br />
+      <%= f.text_field :website, class: 'form-control' %>
+    </div>
+
+    <div class="field">
+      <%= f.label :address, "Address" %> <br />
+      <%= f.text_field :address, class: 'form-control' %>
+    </div>
+
+    <div class="field">
+      <%= f.label :medication, "Prescriber of Medication:" %><br />
+      <%= f.collection_check_boxes :medication_ids, @user.medications.all, :id, :brand_name, class: 'check_boxes' %>
+    </div>
+    <div class="field">
+      <%= f.fields_for :medications, current_user.medications.build do |ff| %>
+      <%= ff.label :brand_name, "Add New Brand Name" %>
+      <%= ff.text_field :brand_name, class: 'form-control' %><br />
+      <%= ff.label :generic_name, "Or New Generic Name" %>
+      <%= ff.text_field :generic_name, class: 'form-control' %><br />
+      <% end %>
+    </div>
+
+    <div class="actions">
+      <%= f.submit "Save", class: "btn btn-default" %>
+    </div>
+    <% end %>
+  </div>
+</div>

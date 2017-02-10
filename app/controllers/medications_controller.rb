@@ -8,6 +8,7 @@ class MedicationsController < ApplicationController
   before_action :set_medication,
                 only: [:show, :edit, :update]
   before_action :set_note, only: [:show]
+  before_action :set_provider_profile
 
   def index
     @medications = @user.medications.all
@@ -16,6 +17,7 @@ class MedicationsController < ApplicationController
   def new
     @medication = Medication.new
     @note = @medication.notes.build
+    @provider_profile = @medication.provider_profiles.build
   end
 
   def create
@@ -79,12 +81,20 @@ class MedicationsController < ApplicationController
       @note = Note.find_by(params[:medication_id]) unless @note.nil?
     end
 
+    def set_provider_profile
+      @provider_profile = ProviderProfile.find_by(params[:provider_profile_id]) unless @provider_profile.nil?
+    end
+
     def medication_params
       params.require(:medication).permit(:brand_name, :generic_name,
-                                  :dose, :administration_route,
-                                  :frequency, :doctor,
+                                  :dose, :administration_route, :frequency,
+                                  :doctor,
                                   notes_attributes: [
-                                  :content, :user_id, :id, :_destroy
+                                    :content, :user_id, :id, :_destroy
+                                  ],
+                                  provider_profiles_attributes: [
+                                    :id, :_destroy, :name, :telephone, :address,
+                                    :website, :user_id
                                   ])
     end
 end

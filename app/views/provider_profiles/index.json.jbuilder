@@ -1,0 +1,1 @@
+json.array! @provider_profiles, partial: 'provider_profiles/provider_profile', as: :provider_profile

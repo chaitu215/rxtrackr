@@ -1,12 +1,15 @@
 class Medication < ApplicationRecord
   belongs_to :user
   has_many   :notes, inverse_of: :medication, autosave: true, dependent: :destroy
+  has_many   :provider_profiles, inverse_of: :medication, autosave: true
 
   validates :user_id, presence: true
   validate  :brand_or_generic
 
   accepts_nested_attributes_for :notes, allow_destroy: true,
                                 reject_if: proc { |attributes| attributes['content'].blank? }
+  accepts_nested_attributes_for :provider_profiles, allow_destroy: true,
+                                reject_if: proc { |attributes| attributes['name'].blank? }
 
   def check_for_missing_info
     if self.dose.empty?

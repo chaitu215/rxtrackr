@@ -29,15 +29,24 @@
       </div>
 
       <div class="field">
-        <%= f.label :doctor, "Prescribing Doctor or OTC" %><br />
-        <%= f.text_field :doctor, class: 'form-control' %>
+        <%= f.fields_for :provider_profiles do |ff| %>
+          <%= ff.hidden_field :user_id, value: @user.id %>
+          <%= ff.label :name, "Prescribing Doctor or OTC" %>
+          <%= ff.text_field :name, class: 'form-control' %><br />
+          <%= ff.label :telephone, "Provider Telephone" %>
+          <%= ff.text_field :telephone, class: 'form-control' %><br />
+          <%= ff.label :address, "Provider Address" %>
+          <%= ff.text_field :address, class: 'form-control' %>
+          <%= ff.label :website, "Provider Website" %>
+          <%= ff.text_field :website, class: 'form-control' %>
+        <% end %>
       </div>
 
       <div class="field">
         <%= f.fields_for :notes do |ff| %>
-        <%= ff.label :note %>
-        <%= ff.hidden_field :user_id, value: @user.id %>
-        <%= ff.text_field :content, class: 'form-control' %>
+          <%= ff.label :note %>
+          <%= ff.hidden_field :user_id, value: @user.id %>
+          <%= ff.text_field :content, class: 'form-control' %>
         <% end %>
       </div>
 

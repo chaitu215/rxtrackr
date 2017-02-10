@@ -11,10 +11,17 @@ Rails.application.routes.draw do
   resources :users, only: [:index, :show, :edit, :delete] do
     resources :medications
   end
+  resources :users do
+    resources :provider_profiles
+  end
   resources :medications
   resources :medications, only: [:new, :show, :edit, :delete] do
     resources :notes
   end
+  resources :medications, only: [:new, :show, :edit, :delete] do
+    resources :provider_profiles
+  end
   resources :notes
   resources :allergies
+  resources :provider_profiles
 end

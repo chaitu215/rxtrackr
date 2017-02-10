@@ -10,6 +10,7 @@ class User < ApplicationRecord
   has_many :identities,  dependent: :destroy
   has_many :allergies,   dependent: :destroy, through: :user_allergies
   has_many :user_allergies
+  has_many :provider_profiles, through: :medications
 
   validates :first_name, presence: true, length: { maximum: 40 }
   validates :email,      presence: true, uniqueness: true
