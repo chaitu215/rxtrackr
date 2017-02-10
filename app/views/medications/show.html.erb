@@ -23,7 +23,7 @@
     </tr>
     <tr>
       <td>Doctor or OTC? </td>
-      <td><%= @provider_profile %></td>
+      <td><%= link_to @provider_profile, medication_provider_profile_path(@medication) %></td>
     </tr>
     <tr>
       <td colspan="2">
@@ -37,7 +37,8 @@
     </nav>
   </div>
   <aside class="col-md-4 col-md-offset-1">
-    <h3>Most Recent Note</h3>
+    <h3>Most Recent Note for <%= @medication.brand_name if !@medication.brand_name.empty? %>
+  <%= @medication.generic_name if @medication.brand_name.empty? %></h3>
     <%= render 'most_recent_notes' %>
   </aside>
 </div>

@@ -1,7 +1,7 @@
 class ProviderProfilesController < ApplicationController
   before_action :authenticate_user!
   before_action :set_user
-  before_action :set_provider_profile, only: [:index, :show, :edit, :delete]
+  before_action :set_provider_profile, only: [:index, :edit, :delete]
 
   def index
     @provider_profiles = ProviderProfile.all
@@ -14,6 +14,8 @@ class ProviderProfilesController < ApplicationController
   end
 
   def show
+    @medication = @user.medications.find_by(params[:medication_id])
+    @provider_profile = ProviderProfile.find(params[:id])
   end
 
   def new
@@ -71,7 +73,7 @@ class ProviderProfilesController < ApplicationController
                                                :address, :website, :medication_id,
                                                :user_id,
                                                medications_attributes: [
-                                                :brand_name, :generic_name,
+                                                :brand_name, :generic_name, :id
                                               ])
     end
 end
