@@ -14,7 +14,7 @@ class ProviderProfilesController < ApplicationController
   end
 
   def show
-    @medication = @user.medications.find_by(params[:medication_id])
+    @medication = @user.medications.find(params[:medication_id])
     @provider_profile = ProviderProfile.find(params[:id])
   end
 
