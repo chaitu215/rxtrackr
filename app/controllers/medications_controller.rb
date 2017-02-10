@@ -8,7 +8,7 @@ class MedicationsController < ApplicationController
   before_action :set_medication,
                 only: [:show, :edit, :update]
   before_action :set_note, only: [:show]
-  before_action :set_provider_profile, only: [:index, :edit, :update]
+  before_action :set_provider_profile, only: [:index, :edit, :update, :most_recent]
 
   def index
     @medications = @user.medications.all
@@ -33,7 +33,7 @@ class MedicationsController < ApplicationController
 
   def most_recent
     if @medication = Medication.most_recent
-      @provider_profile = @medication.provider_profiles.find_by(params[:medication_id]).name
+      @provider_profile = @medication.provider_profiles.find_by(params[:medication_id])
       flash.now[:info] = "This is the most recently added or updated medication. (Last updated #{@medication.updated_at.strftime("%m-%e-%Y")})"
       render :show
     else
@@ -57,7 +57,7 @@ class MedicationsController < ApplicationController
 
   def show
     @message = @medication.check_for_missing_info
-    @provider_profile = @medication.provider_profiles.find_by(params[:medication_id]).name
+    @provider_profile = @medication.provider_profiles.find_by(params[:medication_id])
 
     @note = Note.find_by(params[:medication_id])
     flash.now[:info] = @message unless @message.nil?
