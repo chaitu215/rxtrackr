@@ -62,7 +62,7 @@ class NotesController < ApplicationController
   private
 
     def set_note
-      @note = Note.find_by(params[:medication_id])
+      @note = current_user.notes.find_by(params[:medication_id])
     end
 
     def set_user
