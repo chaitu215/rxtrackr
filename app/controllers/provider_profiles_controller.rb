@@ -7,6 +7,12 @@ class ProviderProfilesController < ApplicationController
     @provider_profiles = ProviderProfile.all
   end
 
+  def provider_profiles
+    if @provider_profiles
+      render :providers
+    end
+  end
+
   def show
   end
 

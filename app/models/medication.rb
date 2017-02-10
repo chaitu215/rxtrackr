@@ -18,8 +18,6 @@ class Medication < ApplicationRecord
       administration_route_missing
     elsif self.frequency.empty?
       frequency_missing
-    elsif self.doctor.empty?
-      need_doctor_or_otc
     else
       @message = nil
     end

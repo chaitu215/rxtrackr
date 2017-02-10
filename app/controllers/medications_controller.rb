@@ -8,7 +8,7 @@ class MedicationsController < ApplicationController
   before_action :set_medication,
                 only: [:show, :edit, :update]
   before_action :set_note, only: [:show]
-  before_action :set_provider_profile
+  before_action :set_provider_profile, only: [:edit, :update]
 
   def index
     @medications = @user.medications.all
@@ -55,6 +55,8 @@ class MedicationsController < ApplicationController
 
   def show
     @message = @medication.check_for_missing_info
+    @provider_profile = @medication.provider_profiles.find_by(params[:medication_id]).name
+
     @note = Note.find_by(params[:medication_id])
     flash.now[:info] = @message unless @message.nil?
   end
@@ -82,7 +84,7 @@ class MedicationsController < ApplicationController
     end
 
     def set_provider_profile
-      @provider_profile = ProviderProfile.find_by(params[:provider_profile_id]) unless @provider_profile.nil?
+      @provider_profile = ProviderProfile.find_by(params[:medication_id]) unless @provider_profile.nil?
     end
 
     def medication_params
@@ -94,7 +96,7 @@ class MedicationsController < ApplicationController
                                   ],
                                   provider_profiles_attributes: [
                                     :id, :_destroy, :name, :telephone, :address,
-                                    :website, :user_id
+                                    :website, :user_id, :medication_id
                                   ])
     end
 end
