@@ -8,8 +8,7 @@ class Medication < ApplicationRecord
 
   accepts_nested_attributes_for :notes, allow_destroy: true,
                                 reject_if: proc { |attributes| attributes['content'].blank? }
-  accepts_nested_attributes_for :provider_profiles, allow_destroy: true,
-                                reject_if: proc { |attributes| attributes['name'].blank? }
+  accepts_nested_attributes_for :provider_profiles, allow_destroy: true
 
   def check_for_missing_info
     if self.dose.empty?
@@ -33,10 +32,6 @@ class Medication < ApplicationRecord
 
   def frequency_missing
     "How often is this medicine taken? Please edit."
-  end
-
-  def need_doctor_or_otc
-    "You are missing prescribing doctor information. Is this an over the counter medicine? Please edit."
   end
 
   def self.most_recent
