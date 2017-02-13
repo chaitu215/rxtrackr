@@ -59,7 +59,6 @@ class MedicationsController < ApplicationController
   def show
     @message = @medication.check_for_missing_info
     @provider_profile = @medication.provider_profiles.find_by(params[:medication_id])
-
     @note = Note.find_by(params[:medication_id])
     flash.now[:info] = @message unless @message.nil?
   end

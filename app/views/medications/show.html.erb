@@ -23,7 +23,7 @@
     </tr>
     <tr>
       <td>Doctor or OTC? </td>
-      <td><%= link_to @provider_profile.name, medication_provider_profile_path(@medication, @provider_profile) %></td>
+      <td><%= link_to @provider_profile.name, medication_provider_profile_path(@medication, @provider_profile) unless @provider_profile.nil? %></td>
     </tr>
     <tr>
       <td colspan="2">
