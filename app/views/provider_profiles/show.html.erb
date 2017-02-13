@@ -1,9 +1,25 @@
 <div class="row">
   <div class="col-md-6 col-md-offset-3">
     <h1>Provider Profile</h1>
-    <p>Name: <%= @provider_profile.name %>
-    <p>Telephone: <%= @provider_profile.telephone %>
-    <p>Address: <%= @provider_profile.address %>
-    <p>Website: <%= @provider_profile.website %>
+
+    <table class="table table-bordered table-hover" id="show">
+      <tr>
+        <td>Name: </td>
+        <td><%= @provider_profile.name %></td>
+      </tr>
+      <tr>
+        <td>Telephone: </td>
+        <td><%= @provider_profile.telephone %></td>
+      </tr>
+      <tr>
+        <td>Address: </td>
+        <td><%= @provider_profile.address %></td>
+      </tr>
+      <tr>
+        <td>Website: </td>
+        <td><%= @provider_profile.website %></td>
+      </tr>
+      <tr>
+    </table>
   </div>
 </div>

@@ -154,3 +154,8 @@ footer {
     }
   }
 }
+ /* show pages */
+#show tr td:first-child {
+  width: 30%;
+  padding-right: 20px;
+}
